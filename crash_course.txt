@@ -1,0 +1,68 @@
+- assembly is the human readable form of machine code
+- every in assembly is binary. only difference is addresses vs data
+- even an addresses is just a binary number
+- three main section : .data .bss .text
+- .data defines constant variables
+- .bss reserving space in memory for future data
+- .text actual code for execution
+- assembler converts .asm -> .obj
+- linker converts .obj -> .exe
+
+REGISTER
+- hardware implemented variables (fixed)
+- to perform operation, we need to load data into registers and perform operation on registers
+- eax, ebx, ecx, edx are general purpose registers
+rax - 64 bit
+eax - lower 32 bit of rax
+ax - lower 16 bit of eax
+ah - upper 8 bit of ax
+al - lower 8 bit of ax
+- esi, edi are used to copy large data
+- esp, ebp are used for stack related operation
+
+MOVE
+- mov dest, src
+- movzx eax, byte ptr [ebx] ; zero extend
+- movsx eax, byte ptr [ebx] ; sign extend
+
+BITWISE
+- and dest, src
+- xor
+- or
+- test dest, src ; only perform and doesn't store the results
+
+ARITHMETIC
+add dest, src
+sub dest, src
+mul bx 			; dx:ax = ax * bx
+div bx			; ax Rdx = dx:ax / bx
+
+FLAG (1=yes, 0=no)
+- CF - carry over?
+- OF - overflow?
+- ZF - result is zero?
+- SF - result is signed?
+- PF - is even parity?
+
+JUMP
+cmp ax, bx		; perform ax - bx and updates flags
+jmp label		; unconditional jump
+je label		; conditional jump ZF=1
+jne label
+
+CALL
+call label		; push ip, jmp label
+ret				; pop ip
+
+SHIFT and ROTATE
+shifted bit -> CF
+shr dest, count
+shl dest, count
+sal dest, count
+sar dest, count
+ror 
+rol
+
+SYSTEM CALL
+mov eax, 1	; operation
+int 80h 	; interrupt

@@ -1,0 +1,35 @@
+MOV dst,src 		| move content from src to dst
+XCHG dst,src		| swap content between src and dst
+LEA dst,src			| load effective address of src into dst
+ADD dst,src			| dst += src
+ADC dst,src			| dst += src + CF
+SUB dst,src			| dst -= src
+SBB dst,src			| dst -= src + CF
+MUL src				| AX = AL * src (or) DX,AX = AX * src
+IMUL src			| signed MUL
+DIV src				| AL,AH = DIVMOD AL,src (or) DX,AX = DIVMOD AX,src
+IDIV src			| signed DIV
+INC src				| src = (src + 1) % max doesn't affect CF
+DEC src				| src = (src - 1) % max doesn't affect CF
+DAA					| adjust AL for BCD addition
+DAS					| adjust AL for BCD subtraction
+CBW					| copies sign bit of AL to all bits in AH
+CWD					| copies sign bit of AX to all bits in DX
+AND dst,src			| dst &= src
+OR dst,src			| dst |= src
+XOR dst,src			| dst ^= src
+NOT dst				| dst = ~dst (1's complement)
+NEG dst				| dst = -dst (2's complement)
+CMP dst,src			| perform dst - src and set FLAG only (PF,SF,ZF,OF,CF)
+TEST dst,src		| perform dst & src and set FLAG only (PF,SF,ZF)
+RCL dst,count		| rotate towards left (includes CF) CL stores the count
+RCR dst,count		| rotate towards right (includes CF) CL stores the count
+ROL dst,count		| rotate towards left (updates CF not includes) CL stores the count
+ROR dst,count		| rotate towards right (updates CF not includes) CL stores the count
+SHL dst,count 		| shift towards left (updates CF with MSB) CL stores the count
+SAL dst,count 		| shift towards left (updates CF with MSB) CL stores the count
+SHR dst,count 		| shift towards right (updates CF with LSB) CL stores the count
+SAR dst,count 		| shift towards right (MSB is unchanged) (updates CF with LSB) CL stores the count
+INT 21H, 02H		| Print character stored in DL
+INT 21H, 09H		| Print message (terminated with '$') whose address stored at DX
+INT 21H, 04CH		| System Exit
