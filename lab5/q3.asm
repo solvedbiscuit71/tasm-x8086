@@ -9,7 +9,7 @@ mov ax, @data
 mov ds, ax
 mov sp, 0fffeh
 lea bx, arr
-mov ah, 00H
+mov ax, 0
 
 ; sorting
 mov si, 01H
@@ -35,10 +35,4 @@ _outer:
     cmp si, len
     jne _outer
 _outer_break:
-mov ah, [bx]
-mov al, [bx+1]
-mov ch, [bx+2]
-mov cl, [bx+3]
-mov dh, [bx+4]
-mov dl, [bx+5]
 end
