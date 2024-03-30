@@ -1,41 +1,39 @@
-- assembly is the human readable form of machine code
-- every in assembly is binary. only difference is addresses vs data
-- even an addresses is just a binary number
-- three main section : .data .bss .text
-- .data defines constant variables
-- .bss reserving space in memory for future data
-- .text actual code for execution
+- assembly is the human readable form of machine code.
+- everything in assembly is binary. difference araises from interpretation.
+- even an addresses is just a binary number.
+- .data section contains the global variables
+- .code section contains the instruction
 - assembler converts .asm -> .obj
 - linker converts .obj -> .exe
 
 REGISTER
 - hardware implemented variables (fixed)
 - to perform operation, we need to load data into registers and perform operation on registers
-- eax, ebx, ecx, edx are general purpose registers
-rax - 64 bit
-eax - lower 32 bit of rax
-ax - lower 16 bit of eax
-ah - upper 8 bit of ax
-al - lower 8 bit of ax
-- esi, edi are used to copy large data
-- esp, ebp are used for stack related operation
+- ax, bx, cx, dx are general purpose registers
+    - ax ( lower 16 bit of eax )
+    - ah ( upper 8 bit of ax )
+    - al ( lower 8 bit of ax )
+- si, di are used to copy large data
+- sp, bp are used for stack related operation
+
+OPERAND
+- atmost one operand can be a memory location.
+- operand fetching happens during instruction decoding.
 
 MOVE
 - mov dest, src
-- movzx eax, byte ptr [ebx] ; zero extend
-- movsx eax, byte ptr [ebx] ; sign extend
 
 BITWISE
 - and dest, src
 - xor
 - or
-- test dest, src ; only perform and doesn't store the results
+- test dest, src
 
 ARITHMETIC
 add dest, src
 sub dest, src
-mul bx 			; dx:ax = ax * bx
-div bx			; ax Rdx = dx:ax / bx
+mul bx  ; dx:ax = ax * bx
+div bx  ; ax Rdx = dx:ax / bx
 
 FLAG (1=yes, 0=no)
 - CF - carry over?
@@ -64,5 +62,9 @@ ror
 rol
 
 SYSTEM CALL
-mov eax, 1	; operation
-int 80h 	; interrupt
+mov ah, 01H ; char input -> al
+mov ah, 02H ; char output <- dl
+mov ah, 09H ; string output <- dx
+mov ah, 0AH ; string input <- dx, buf = buffer-size input-size data...
+mov ah, 4CH ; terminate
+int 21H
